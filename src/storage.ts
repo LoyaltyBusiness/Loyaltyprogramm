@@ -6,6 +6,7 @@ export type CompanyAccount = {
   industry: Industry;
   city: string;
   website: string;
+  logoUrl: string;
   programName: string;
   pointsName: string;
   pointsPerEuro: number;
@@ -58,12 +59,48 @@ export function isValidWebsite(value: string): boolean {
   }
 }
 
+/** Domain from a website field, e.g. kustermann.de */
+export function websiteHostname(website: string): string | null {
+  const trimmed = website.trim();
+  if (!trimmed) return null;
+  try {
+    const withProtocol = /^https?:\/\//i.test(trimmed)
+      ? trimmed
+      : `https://${trimmed}`;
+    const host = new URL(withProtocol).hostname.replace(/^www\./i, "");
+    return host.includes(".") ? host : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Logo URL derived from the company website (public icon lookup).
+ * Works when the firm registers with e.g. kustermann.de — not from the name alone.
+ */
+export function logoUrlForWebsite(website: string): string {
+  const host = websiteHostname(website);
+  if (!host) return "";
+  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128`;
+}
+
+function normalizeAccount(raw: CompanyAccount): CompanyAccount {
+  const website = raw.website ?? "";
+  return {
+    ...raw,
+    website,
+    logoUrl: raw.logoUrl || logoUrlForWebsite(website),
+  };
+}
+
 function readAll(): CompanyAccount[] {
   try {
     const raw = localStorage.getItem(ACCOUNTS_KEY);
     if (!raw) return [];
     const parsed: unknown = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as CompanyAccount[]) : [];
+    return Array.isArray(parsed)
+      ? (parsed as CompanyAccount[]).map(normalizeAccount)
+      : [];
   } catch {
     return [];
   }
@@ -96,12 +133,14 @@ export async function createAccount(
   if (findByEmail(input.email)) return { ok: false, reason: "taken" };
 
   const salt = crypto.randomUUID();
+  const website = input.website.trim();
   const account: CompanyAccount = {
     id: crypto.randomUUID(),
     companyName: input.companyName.trim(),
     industry: input.industry,
     city: input.city.trim(),
-    website: input.website.trim(),
+    website,
+    logoUrl: logoUrlForWebsite(website),
     programName: input.programName.trim(),
     pointsName: input.pointsName.trim(),
     pointsPerEuro: input.pointsPerEuro,

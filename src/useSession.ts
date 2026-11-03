@@ -6,6 +6,8 @@ import type {
   CouponRedeemResult,
   CouponResult,
   EarnResult,
+  EventAttendResult,
+  EventResult,
   GiftIssueResult,
   GiftLinkResult,
   GiftSpendResult,
@@ -44,6 +46,8 @@ export type SessionValue = {
     bonusPoints: number,
   ) => CampaignResult;
   claimCampaign: (campaignId: string, memberId: string) => CampaignClaimResult;
+  addEvent: (name: string, points: number) => EventResult;
+  attendEvent: (eventId: string, memberId: string) => EventAttendResult;
   isLeaving: () => boolean;
   finishLeaving: () => void;
 };

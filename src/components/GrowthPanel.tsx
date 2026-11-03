@@ -16,9 +16,20 @@ function fill(template: string, values: Record<string, string>) {
   );
 }
 
-export function GrowthPanel() {
+export type GrowthSection = "campaign" | "event" | "invoice";
+
+export function GrowthPanel({ sections }: { sections?: GrowthSection[] }) {
+  const show = new Set(sections ?? ["campaign", "event", "invoice"]);
   const { locale, copy } = useLocale();
-  const { account, program, addCampaign, claimCampaign, postInvoice } = useSession();
+  const {
+    account,
+    program,
+    addCampaign,
+    claimCampaign,
+    postInvoice,
+    addEvent,
+    attendEvent,
+  } = useSession();
   const text = copy.account.program;
   const numberLocale = locale === "de" ? "de-DE" : "en-GB";
 
@@ -32,6 +43,16 @@ export function GrowthPanel() {
   const [claimMemberId, setClaimMemberId] = useState("");
   const [claimError, setClaimError] = useState("");
   const [claimSaved, setClaimSaved] = useState(false);
+
+  const [eventName, setEventName] = useState("");
+  const [eventPoints, setEventPoints] = useState("");
+  const [eventError, setEventError] = useState("");
+  const [eventSaved, setEventSaved] = useState(false);
+
+  const [attendEventId, setAttendEventId] = useState("");
+  const [attendMemberId, setAttendMemberId] = useState("");
+  const [attendError, setAttendError] = useState("");
+  const [attendSaved, setAttendSaved] = useState(false);
 
   const [invoiceMemberId, setInvoiceMemberId] = useState("");
   const [invoiceEuros, setInvoiceEuros] = useState("");
@@ -90,6 +111,49 @@ export function GrowthPanel() {
     setClaimSaved(true);
   }
 
+  function onAddEvent(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setEventSaved(false);
+    const points = parseCost(eventPoints);
+    if (!eventName.trim()) {
+      setEventError(text.errors.name);
+      return;
+    }
+    if (points === null) {
+      setEventError(text.errors.points);
+      return;
+    }
+    const result = addEvent(eventName, points);
+    if (!result.ok) {
+      setEventError(text.errors[result.reason === "points" ? "points" : "name"]);
+      return;
+    }
+    setEventError("");
+    setEventName("");
+    setEventPoints("");
+    setEventSaved(true);
+  }
+
+  function onAttend(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setAttendSaved(false);
+    if (!attendEventId) {
+      setAttendError(text.errors.event);
+      return;
+    }
+    if (!attendMemberId) {
+      setAttendError(text.errors.member);
+      return;
+    }
+    const result = attendEvent(attendEventId, attendMemberId);
+    if (!result.ok) {
+      setAttendError(text.errors[result.reason === "event" ? "event" : "member"]);
+      return;
+    }
+    setAttendError("");
+    setAttendSaved(true);
+  }
+
   function onInvoice(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setInvoiceSaved(false);
@@ -115,6 +179,7 @@ export function GrowthPanel() {
 
   return (
     <>
+      {show.has("campaign") ? (
       <section className="card stack-card">
         <h2>{text.campaignTitle}</h2>
         <p className="lead">{text.campaignText}</p>
@@ -247,7 +312,124 @@ export function GrowthPanel() {
           </div>
         </form>
       </section>
+      ) : null}
 
+      {show.has("event") ? (
+      <section className="card stack-card">
+        <h2>{text.eventTitle}</h2>
+        <p className="lead">{text.eventText}</p>
+        <form onSubmit={onAddEvent} noValidate>
+          <div className="pair">
+            <Field
+              id="event-name"
+              label={text.eventName}
+              error={eventError === text.errors.name ? eventError : undefined}
+            >
+              <input
+                id="event-name"
+                value={eventName}
+                maxLength={80}
+                onChange={(event) => setEventName(event.target.value)}
+                required
+              />
+            </Field>
+            <Field
+              id="event-points"
+              label={text.eventPoints}
+              error={eventError === text.errors.points ? eventError : undefined}
+            >
+              <input
+                id="event-points"
+                type="number"
+                min={0.01}
+                step={0.01}
+                value={eventPoints}
+                onChange={(event) => setEventPoints(event.target.value)}
+                required
+              />
+            </Field>
+          </div>
+          <div className="form-actions">
+            <button className="btn" type="submit">
+              {text.addEvent}
+            </button>
+            {eventSaved ? (
+              <p className="saved" role="status">
+                {text.eventAdded}
+              </p>
+            ) : null}
+          </div>
+        </form>
+        {program.events.length === 0 ? (
+          <p className="empty">{text.noEvents}</p>
+        ) : (
+          <ul className="roster">
+            {program.events.map((item) => (
+              <li key={item.id}>
+                <strong>{item.name}</strong>
+                <span className="balance">
+                  {pointsLabel(item.points)} {account.pointsName}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        <form onSubmit={onAttend} noValidate>
+          <div className="pair">
+            <Field
+              id="attend-event"
+              label={text.event}
+              error={attendError === text.errors.event ? attendError : undefined}
+            >
+              <select
+                id="attend-event"
+                value={attendEventId}
+                onChange={(event) => setAttendEventId(event.target.value)}
+                required
+              >
+                <option value="">{text.chooseEvent}</option>
+                {program.events.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name} · {pointsLabel(item.points)}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field
+              id="attend-member"
+              label={text.member}
+              error={attendError === text.errors.member ? attendError : undefined}
+            >
+              <select
+                id="attend-member"
+                value={attendMemberId}
+                onChange={(event) => setAttendMemberId(event.target.value)}
+                required
+              >
+                <option value="">{text.chooseMember}</option>
+                {program.members.map((member) => (
+                  <option key={member.id} value={member.id}>
+                    {member.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          </div>
+          <div className="form-actions">
+            <button className="btn" type="submit">
+              {text.attendEvent}
+            </button>
+            {attendSaved ? (
+              <p className="saved" role="status">
+                {text.eventAttended}
+              </p>
+            ) : null}
+          </div>
+        </form>
+      </section>
+      ) : null}
+
+      {show.has("invoice") ? (
       <section className="card stack-card">
         <h2>{text.invoiceTitle}</h2>
         <p className="lead">{text.invoiceText}</p>
@@ -311,6 +493,7 @@ export function GrowthPanel() {
           </div>
         </form>
       </section>
+      ) : null}
     </>
   );
 }

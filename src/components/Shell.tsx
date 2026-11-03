@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { CompanyLogo } from "./CompanyLogo.tsx";
 import { useLocale } from "../useLocale.ts";
 import { useSession } from "../useSession.ts";
 
@@ -43,7 +44,8 @@ export function Shell() {
           </div>
           {account ? (
             <>
-              <Link className="chip" to="/workspace">
+              <Link className="chip chip-company" to="/workspace">
+                <CompanyLogo name={account.companyName} logoUrl={account.logoUrl} />
                 {account.companyName}
               </Link>
               <Link className="btn btn-ghost" to="/app-vorschau">

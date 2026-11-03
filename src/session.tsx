@@ -1,8 +1,10 @@
 import { useMemo, useRef, useState, type ReactNode } from "react";
 import {
+  attendEvent as postEventAttend,
   claimCampaign as postCampaignClaim,
   createCampaign,
   createCoupon,
+  createEvent,
   createMember,
   createReward,
   emptyProgram,
@@ -170,6 +172,18 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       claimCampaign(campaignId: string, memberId: string) {
         if (!account) return { ok: false as const, reason: "campaign" as const };
         const result = postCampaignClaim(account.id, campaignId, memberId);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      addEvent(name: string, points: number) {
+        if (!account) return { ok: false as const, reason: "name" as const };
+        const result = createEvent(account.id, name, points);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      attendEvent(eventId: string, memberId: string) {
+        if (!account) return { ok: false as const, reason: "event" as const };
+        const result = postEventAttend(account.id, eventId, memberId);
         if (result.ok) setProgram(result.program);
         return result;
       },

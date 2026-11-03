@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { CompanyLogo } from "../components/CompanyLogo.tsx";
 import { useLocale } from "../useLocale.ts";
 import { useSession } from "../useSession.ts";
-import { memberMatchesSegment, memberStatus } from "../program.ts";
+import { memberStatus } from "../program.ts";
+
+function fill(template: string, values: Record<string, string>) {
+  return Object.entries(values).reduce(
+    (text, [key, value]) => text.replaceAll(`{${key}}`, value),
+    template,
+  );
+}
 
 export function BrandAppPage() {
   const { locale, copy } = useLocale();
@@ -21,6 +29,8 @@ export function BrandAppPage() {
   }
 
   const numberLocale = locale === "de" ? "de-DE" : "en-GB";
+  const money = (value: number) =>
+    value.toLocaleString(numberLocale, { style: "currency", currency: "EUR" });
   const memberId =
     pickedId && program.members.some((item) => item.id === pickedId)
       ? pickedId
@@ -33,12 +43,22 @@ export function BrandAppPage() {
       : status === "silver"
         ? programText.statusSilver
         : programText.statusClassic;
-  const offers = member
-    ? program.campaigns.filter((campaign) => memberMatchesSegment(member, campaign.segment))
-    : [];
+  const linkedGift =
+    member == null
+      ? null
+      : (program.giftCards.find(
+          (card) => card.memberId === member.id && card.balance > 0,
+        ) ?? null);
+  const memberEvents =
+    member == null
+      ? []
+      : program.entries
+          .filter((entry) => entry.memberId === member.id && entry.kind === "event")
+          .slice(-3)
+          .reverse();
 
   return (
-    <div className="workspace app-preview">
+    <div className="workspace app-preview premium-preview">
       <header className="workspace-intro">
         <p className="eyebrow">{text.eyebrow}</p>
         <h1>{text.title}</h1>
@@ -64,64 +84,58 @@ export function BrandAppPage() {
           </label>
 
           {member ? (
-            <div className="phone-frame" aria-label={text.cardLabel}>
+            <div className="phone-frame premium-phone" aria-label={text.cardLabel}>
               <div className="phone-notch" />
-              <p className="phone-brand">{account.programName}</p>
-              <article className={`virtual-card status-${status}`}>
-                <p className="eyebrow">{text.cardLabel}</p>
+              <div className="phone-brand-row">
+                <CompanyLogo
+                  name={account.companyName}
+                  logoUrl={account.logoUrl}
+                  size="md"
+                />
+                <p className="phone-brand">{account.programName}</p>
+              </div>
+              <article className={`quiet-card tone-${status}`}>
+                <p className="quiet-label">{text.cardLabel}</p>
                 <h2>{member.name}</h2>
-                <p className={`status-pill status-${status}`}>{statusLabel}</p>
-                <dl className="phone-stats">
+                <p className="quiet-status">
+                  {fill(text.statusLine, { status: statusLabel })}
+                </p>
+                <div className="quiet-row">
                   <div>
-                    <dt>{text.points}</dt>
-                    <dd>
+                    <span>{text.points}</span>
+                    <strong>
                       {member.points.toLocaleString(numberLocale)} {account.pointsName}
-                    </dd>
+                    </strong>
                   </div>
                   <div>
-                    <dt>{text.lifetime}</dt>
-                    <dd>{member.lifetimePoints.toLocaleString(numberLocale)}</dd>
+                    <span>{text.lifetime}</span>
+                    <strong>{member.lifetimePoints.toLocaleString(numberLocale)}</strong>
                   </div>
-                  <div>
-                    <dt>{text.referral}</dt>
-                    <dd>{member.referralCode}</dd>
-                  </div>
-                </dl>
+                </div>
+                <div className="quiet-gift">
+                  <span>{text.gift}</span>
+                  <strong>
+                    {linkedGift ? money(linkedGift.balance) : text.noGift}
+                  </strong>
+                  {linkedGift ? <em>{linkedGift.code}</em> : null}
+                </div>
               </article>
-              <section className="phone-offers">
-                <h3>{text.offers}</h3>
-                {offers.length === 0 ? (
-                  <p className="muted">{text.noOffers}</p>
+              <section className="phone-offers quiet-offers">
+                <h3>{text.events}</h3>
+                {memberEvents.length === 0 ? (
+                  <p className="muted">{text.noEvents}</p>
                 ) : (
                   <ul>
-                    {offers.map((campaign) => (
-                      <li key={campaign.id}>
-                        <strong>{campaign.name}</strong>
+                    {memberEvents.map((entry) => (
+                      <li key={entry.id}>
+                        <strong>{entry.eventName}</strong>
                         <span>
-                          +{campaign.bonusPoints.toLocaleString(numberLocale)}{" "}
-                          {account.pointsName}
+                          +{entry.points.toLocaleString(numberLocale)} {account.pointsName}
                         </span>
                       </li>
                     ))}
                   </ul>
                 )}
-                {program.coupons.length > 0 ? (
-                  <ul>
-                    {program.coupons.map((coupon) => (
-                      <li key={coupon.id}>
-                        <strong>{coupon.name}</strong>
-                        <span>
-                          −
-                          {coupon.valueEuros.toLocaleString(numberLocale, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          })}{" "}
-                          €
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
               </section>
             </div>
           ) : null}

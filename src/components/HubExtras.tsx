@@ -11,7 +11,10 @@ function fill(template: string, values: Record<string, string>) {
   );
 }
 
-export function HubExtras() {
+export type HubSection = "receipt" | "gift" | "coupon";
+
+export function HubExtras({ sections }: { sections?: HubSection[] }) {
+  const show = new Set(sections ?? ["receipt", "gift", "coupon"]);
   const { locale, copy } = useLocale();
   const {
     account,
@@ -209,6 +212,7 @@ export function HubExtras() {
 
   return (
     <>
+      {show.has("receipt") ? (
       <section className="card stack-card">
         <h2>{text.receiptTitle}</h2>
         <p className="lead">{text.receiptText}</p>
@@ -274,7 +278,9 @@ export function HubExtras() {
           </div>
         </form>
       </section>
+      ) : null}
 
+      {show.has("gift") ? (
       <section className="card stack-card">
         <h2>{text.giftTitle}</h2>
         <p className="lead">{text.giftText}</p>
@@ -465,7 +471,9 @@ export function HubExtras() {
           </form>
         ) : null}
       </section>
+      ) : null}
 
+      {show.has("coupon") ? (
       <section className="card stack-card">
         <h2>{text.couponTitle}</h2>
         <p className="lead">{text.couponText}</p>
@@ -596,6 +604,7 @@ export function HubExtras() {
           </div>
         </form>
       </section>
+      ) : null}
     </>
   );
 }

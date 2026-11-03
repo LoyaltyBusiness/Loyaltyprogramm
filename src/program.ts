@@ -53,6 +53,14 @@ export type Campaign = {
   createdAt: string;
 };
 
+export type EventOffer = {
+  id: string;
+  companyId: string;
+  name: string;
+  points: number;
+  createdAt: string;
+};
+
 export type LedgerEntry = {
   id: string;
   companyId: string;
@@ -63,6 +71,7 @@ export type LedgerEntry = {
     | "redeem"
     | "receipt"
     | "invoice"
+    | "event"
     | "gift-issue"
     | "gift-redeem"
     | "gift-link"
@@ -76,6 +85,7 @@ export type LedgerEntry = {
   giftCode?: string;
   couponName?: string;
   campaignName?: string;
+  eventName?: string;
   createdAt: string;
 };
 
@@ -85,6 +95,7 @@ export type ProgramData = {
   giftCards: GiftCard[];
   coupons: Coupon[];
   campaigns: Campaign[];
+  events: EventOffer[];
   entries: LedgerEntry[];
 };
 
@@ -132,6 +143,14 @@ export type CampaignClaimResult =
   | { ok: true; program: ProgramData }
   | { ok: false; reason: "campaign" | "member" | "segment" | "claimed" };
 
+export type EventResult =
+  | { ok: true; program: ProgramData }
+  | { ok: false; reason: "name" | "points" };
+
+export type EventAttendResult =
+  | { ok: true; program: ProgramData }
+  | { ok: false; reason: "event" | "member" };
+
 const PROGRAM_KEY = "kafteji.program";
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const WELCOME_POINTS = 10;
@@ -149,6 +168,7 @@ export function emptyProgram(): ProgramData {
     giftCards: [],
     coupons: [],
     campaigns: [],
+    events: [],
     entries: [],
   };
 }
@@ -256,6 +276,7 @@ function readStore(): Store {
       giftCards: Array.isArray(record.giftCards) ? record.giftCards : [],
       coupons: Array.isArray(record.coupons) ? record.coupons : [],
       campaigns: Array.isArray(record.campaigns) ? record.campaigns : [],
+      events: Array.isArray(record.events) ? record.events : [],
       entries: Array.isArray(record.entries) ? record.entries : [],
     };
     const needsMigrate =
@@ -267,7 +288,7 @@ function readStore(): Store {
           !("lifetimePoints" in member) ||
           !("referralCode" in member),
       );
-    if (needsMigrate || !Array.isArray(record.campaigns)) {
+    if (needsMigrate || !Array.isArray(record.campaigns) || !Array.isArray(record.events)) {
       writeStore(store);
     }
     return store;
@@ -288,6 +309,7 @@ export function readProgram(companyId: string): ProgramData {
     giftCards: store.giftCards.filter((card) => card.companyId === companyId),
     coupons: store.coupons.filter((coupon) => coupon.companyId === companyId),
     campaigns: store.campaigns.filter((campaign) => campaign.companyId === companyId),
+    events: store.events.filter((event) => event.companyId === companyId),
     entries: store.entries.filter((entry) => entry.companyId === companyId),
   };
 }
@@ -657,6 +679,54 @@ export function claimCampaign(
     kind: "campaign",
     points: campaign.bonusPoints,
     campaignName: campaign.name,
+  });
+  writeStore(store);
+  return { ok: true, program: readProgram(companyId) };
+}
+
+export function createEvent(
+  companyId: string,
+  name: string,
+  points: number,
+): EventResult {
+  const trimmed = name.trim();
+  if (!trimmed) return { ok: false, reason: "name" };
+  if (!Number.isFinite(points) || points <= 0 || points > 1_000_000) {
+    return { ok: false, reason: "points" };
+  }
+
+  const store = readStore();
+  store.events.push({
+    id: crypto.randomUUID(),
+    companyId,
+    name: trimmed,
+    points: roundPoints(points),
+    createdAt: new Date().toISOString(),
+  });
+  writeStore(store);
+  return { ok: true, program: readProgram(companyId) };
+}
+
+export function attendEvent(
+  companyId: string,
+  eventId: string,
+  memberId: string,
+): EventAttendResult {
+  const store = readStore();
+  const event = store.events.find((item) => item.id === eventId && item.companyId === companyId);
+  const member = store.members.find(
+    (item) => item.id === memberId && item.companyId === companyId,
+  );
+  if (!event) return { ok: false, reason: "event" };
+  if (!member) return { ok: false, reason: "member" };
+
+  credit(member, event.points, store, {
+    companyId,
+    memberId: member.id,
+    memberName: member.name,
+    kind: "event",
+    points: event.points,
+    eventName: event.name,
   });
   writeStore(store);
   return { ok: true, program: readProgram(companyId) };

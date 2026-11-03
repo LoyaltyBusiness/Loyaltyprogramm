@@ -223,7 +223,7 @@ export function RegisterPage() {
                 maxLength={60}
               />
             </Field>
-            <Field id="website" label={text.website} hint={text.optional} error={errors.website}>
+            <Field id="website" label={text.website} hint={text.websiteHint} error={errors.website}>
               <input
                 id="website"
                 name="website"
@@ -233,7 +233,7 @@ export function RegisterPage() {
                 spellCheck={false}
                 value={form.website}
                 aria-invalid={errors.website ? true : undefined}
-                aria-describedby={describedBy("website", errors.website, text.optional)}
+                aria-describedby={describedBy("website", errors.website, text.websiteHint)}
                 onChange={(event) => {
                   clearError("website");
                   setForm((current) => ({ ...current, website: event.target.value }));

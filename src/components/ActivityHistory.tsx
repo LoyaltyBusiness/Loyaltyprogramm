@@ -92,6 +92,13 @@ export function ActivityHistory() {
           unit: pointsName,
           euros: money(entry.euros ?? 0),
         });
+      case "event":
+        return fill(text.eventLine, {
+          name: entry.memberName,
+          points: pointsLabel(entry.points),
+          unit: pointsName,
+          event: entry.eventName ?? "",
+        });
       default:
         return entry.memberName;
     }
