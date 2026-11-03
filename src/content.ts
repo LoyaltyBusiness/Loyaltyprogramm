@@ -1,0 +1,1178 @@
+const de = {
+  meta: {
+    title: "kafteji — Loyalty- und Giftcard-Technologie",
+    description:
+      "kafteji steuert Punkte, Coupons und Gutscheinkarten in einem Workspace. Für Marken, die Kundenbindung selbst in der Hand behalten.",
+  },
+  brand: "kafteji",
+  hosted: "Made & hosted in Deutschland",
+  nav: {
+    products: "Produkte",
+    solutions: "Lösungen",
+    resources: "Ressourcen",
+    about: "Über uns",
+    demo: "Demo buchen",
+    talk: "Erstgespräch buchen",
+    search: "Suche",
+    searchPlaceholder: "Seite oder Artikel suchen",
+    noResults: "Nichts dazu gefunden.",
+    openMenu: "Menü öffnen",
+    closeMenu: "Menü schließen",
+  },
+  menu: {
+    products: [
+      {
+        to: "/produkte/hub",
+        title: "kafteji Hub",
+        text: "Loyalty und Giftcards in einem Workspace.",
+      },
+      {
+        to: "/produkte/loyalty",
+        title: "Loyalty",
+        text: "Punkte, Status, Coupons und Kampagnen.",
+      },
+      {
+        to: "/produkte/giftcards",
+        title: "Giftcards",
+        text: "Digitale und physische Gutscheinkarten.",
+      },
+      {
+        to: "/produkte/app",
+        title: "Marken-App",
+        text: "Karte, Coupons und Bon-Scan im eigenen Look.",
+      },
+    ],
+    solutions: [
+      {
+        to: "/loesungen/einzelhandel",
+        title: "Einzelhandel",
+        text: "Stationär und online auf einem Konto.",
+      },
+      {
+        to: "/loesungen/b2b",
+        title: "B2B",
+        text: "Prämien für Handel, Handwerk und Teams.",
+      },
+    ],
+    resources: [
+      {
+        to: "/insights",
+        title: "Insights",
+        text: "Kurze Texte zu Programm, Gutschein und Handel.",
+      },
+      {
+        to: "/kontakt",
+        title: "Gespräch",
+        text: "Demo oder Erstgespräch anfragen.",
+      },
+    ],
+    about: [
+      {
+        to: "/ueber-uns",
+        title: "Das Unternehmen",
+        text: "Wie kafteji Programme aufsetzt und begleitet.",
+      },
+      {
+        to: "/impressum",
+        title: "Impressum",
+        text: "Anbieterkennzeichnung dieser Demo.",
+      },
+    ],
+  },
+  hero: {
+    title: "Loyalität und Gutscheine aus einem Workspace.",
+    text: "kafteji hilft Marken, Punkte, Coupons und Giftcards zusammen zu steuern. Die Module lassen sich an Kasse und Shop anbinden, die Daten bleiben in Deutschland, und das Programm kann mit dem Geschäft mitwachsen.",
+  },
+  pillars: {
+    title: "Was die Zusammenarbeit ausmacht",
+    items: [
+      {
+        title: "Programmstrategie",
+        text: "Ziele, Regeln und ein Business Case, bevor die erste Kampagne live geht. Welche Aktion Punkte bringt, welche Prämie sich lohnt, welcher Kanal die Karte trägt.",
+      },
+      {
+        title: "Technologie",
+        text: "Module, die Fachteams selbst pflegen, plus eine API für Kasse, Shop und App. Ein Konto, mehrere Touchpoints, keine zweite Kundenkarte in der Schublade.",
+      },
+      {
+        title: "Betrieb",
+        text: "Kennzahlen, Kampagnen und ein fester Ansprechpartner, solange das Programm läuft. Nicht nur zum Start, sondern wenn Regeln, Sortiment oder Filialen sich ändern.",
+      },
+    ],
+  },
+  hub: {
+    badge: "Neu",
+    title: "Der Hub hält Loyalty und Giftcards zusammen.",
+    text: "Punktekonto, Coupons, Kartenbestand und Auswertungen liegen in einem Workspace. Marketing stellt Kampagnen ein, der Store sieht den Saldo, die Finanzabteilung sieht den Gutscheinumsatz.",
+    cta: "Hub ansehen",
+    kpis: [
+      { label: "Mitglieder", value: "128.4k" },
+      { label: "Einlösung", value: "37%" },
+      { label: "Giftcard-Umsatz", value: "€ 1.9m" },
+      { label: "Aktive Kampagnen", value: "14" },
+    ],
+  },
+  split: {
+    loyalty: {
+      eyebrow: "Loyalty",
+      title: "Programme, die im Alltag ankommen",
+      text: "Eine virtuelle Karte, Coupons mit bewusster Aktivierung, Punkte für Umsatz oder Frequenz, und Kampagnen, die sich nach Segment steuern lassen.",
+      cta: "Loyalty ansehen",
+      points: [
+        "Virtuelle Kundenkarte statt Plastik",
+        "Coupons, die erst an der Kasse aktiv werden",
+        "Bon-Scan, wenn die Kasse noch nicht angebunden ist",
+        "Status, Stempel und Prämien in einem Konto",
+      ],
+    },
+    gift: {
+      eyebrow: "Giftcards",
+      title: "Gutscheine, die nach dem Kauf weiterarbeiten",
+      text: "Digitale und physische Karten mit Markenauftritt, Saldo und Einlösung. Als Geschenk, als Corporate Benefit oder als Einstieg in ein Loyalty-Konto.",
+      cta: "Giftcards ansehen",
+      points: [
+        "Design, Nennwert und Laufzeit je Kampagne",
+        "Teilbeträge und Restguthaben",
+        "Verkauf im Shop, in der Filiale und als Sammelbestellung",
+        "Optional mit dem Punktekonto verbunden",
+      ],
+    },
+  },
+  industries: {
+    title: "Zwei typische Einstiege",
+    items: [
+      {
+        to: "/loesungen/einzelhandel",
+        eyebrow: "Einzelhandel",
+        title: "Filiale und Shop auf einem Konto",
+        text: "Kundschaft registriert sich per App oder QR-Code, sammelt Punkte auf den Bon und löst Vorteile dort ein, wo sie kauft.",
+      },
+      {
+        to: "/loesungen/b2b",
+        eyebrow: "B2B",
+        title: "Prämien für die, die empfehlen und bestellen",
+        text: "Fachbetriebe laden Rechnungen hoch, sammeln für Umsatz und Schulungen und lösen Sachprämien oder Gutscheine ein.",
+      },
+    ],
+  },
+  connections: {
+    title: "Typische Anbindungen",
+    note: "Beispielnamen für diese Demo, keine echten Partnerschaften.",
+    items: ["KassaNord", "Ladenwerk", "Briefpost", "Payfeld", "Marktlinie", "Regalio"],
+  },
+  security: {
+    title: "Datenhaltung in Deutschland",
+    text: "Personenbezogene Daten dieser Plattform sind für Hosting in Deutschland gedacht. Einwilligung, Auskunft und Löschung gehören ins Programm, nicht in ein späteres Ticket. Diese Demo vergibt keine Zertifikate und speichert keine Formulare.",
+  },
+  insights: {
+    eyebrow: "Insights",
+    title: "Worüber Teams vor dem Kick-off sprechen",
+    all: "Alle Beiträge",
+    read: "Weiterlesen",
+  },
+  newsletter: {
+    title: "Kurz informiert bleiben",
+    text: "In der echten Plattform wäre das ein Newsletter. Hier bleibt die Adresse im Browser und wird nicht verschickt.",
+    placeholder: "E-Mail-Adresse",
+    button: "Eintragen",
+    success: "Eingetragen. In dieser Demo verlässt die Adresse den Browser nicht.",
+    invalid: "Bitte eine gültige E-Mail-Adresse eintragen.",
+  },
+  closing: {
+    kicker: "Gemeinsam ein Programm bauen",
+    title: "Wir skizzieren den passenden Einstieg für euer Geschäft.",
+    text: "Ob Filialprogramm, B2B-Prämien oder Giftcards zum Saisonstart: das Erstgespräch klärt Ziel, Kanal und den ersten messbaren Schritt.",
+  },
+  footer: {
+    blurb: "Workspace für Loyalty-Programme und Gutscheinkarten.",
+    product: "Produkte",
+    company: "Unternehmen",
+    legal: "Rechtliches",
+    privacy: "Datenschutz",
+    imprint: "Impressum",
+    contact: "Kontakt",
+    disclaimer:
+      "Eigenständige Demo. Keine Verbindung zur KNISTR GmbH oder zu deren Produkten.",
+    address: "Beispielweg 1 · 20095 Hamburg · hello@kafteji.example",
+  },
+  contact: {
+    eyebrow: "Kontakt",
+    title: "Demo oder Erstgespräch",
+    text: "Schildert kurz, was ihr binden oder verschenken wollt. Die Anfrage bleibt in dieser Demo lokal im Browser.",
+    name: "Name",
+    company: "Unternehmen",
+    email: "E-Mail",
+    phone: "Telefon",
+    phoneHint: "optional",
+    interest: "Worum geht es?",
+    interests: ["Loyalty", "Giftcards", "Beides", "Noch offen"],
+    message: "Nachricht",
+    consent: "Ich verstehe, dass dies eine Demo ist und keine Anfrage versendet wird.",
+    submit: "Anfrage merken",
+    successTitle: "Anfrage liegt lokal bereit",
+    successText:
+      "Es wurde nichts an einen Server geschickt. In einer angebundenen Version ginge diese Nachricht an das kafteji-Team.",
+    again: "Weitere Anfrage",
+    errors: {
+      name: "Bitte einen Namen eintragen.",
+      company: "Bitte das Unternehmen eintragen.",
+      email: "Bitte eine gültige E-Mail-Adresse eintragen.",
+      message: "Bitte kurz beschreiben, worum es geht.",
+      consent: "Bitte den Hinweis bestätigen.",
+    },
+  },
+  about: {
+    eyebrow: "Über kafteji",
+    title: "Eine Plattform, drei Arten der Begleitung",
+    text: "kafteji ist eine fiktive Marke für diese Website. Sie zeigt, wie ein Anbieter für Loyalty und Giftcards auftreten kann: mit Strategie, Software und Betrieb aus einer Hand.",
+    blocks: [
+      {
+        title: "Vor dem Start",
+        text: "Wir klären, wen das Programm erreichen soll, welche Handlung belohnt wird und welcher Kanal die Karte trägt. Daraus wird ein Regelwerk, das sich erklären lässt.",
+      },
+      {
+        title: "Beim Einbau",
+        text: "Shop, Kasse oder App sprechen mit demselben Konto. Wo eine Anbindung noch fehlt, überbrückt der Bon-Scan den Start.",
+      },
+      {
+        title: "Im Alltag",
+        text: "Kampagnen, Einlösung und Mitgliederentwicklung bleiben sichtbar. Regeln lassen sich ändern, ohne das Programm neu auszuschreiben.",
+      },
+    ],
+  },
+  products: {
+    hub: {
+      eyebrow: "Produkt",
+      title: "kafteji Hub",
+      lead: "Der Workspace, in dem Loyalty-Regeln und Gutscheinkarten dieselbe Kundenbasis nutzen.",
+      points: [
+        "Konten, Salden und Kampagnen an einem Ort",
+        "Auswertungen zu Mitgliedern, Einlösung und Kartenumsatz",
+        "Rollen für Marketing, Store und Finance",
+        "Änderungen an Regeln ohne Release-Fenster",
+      ],
+      sections: [
+        {
+          title: "Ein Blick fürs Programm",
+          text: "Mitgliederentwicklung, aktive Kampagnen und eingelöste Vorteile stehen nebeneinander. So sieht ein Team, ob ein Coupon zieht oder nur verteilt wurde.",
+        },
+        {
+          title: "Giftcards im selben Bestand",
+          text: "Karten müssen kein zweites System sein. Verkauf, Restguthaben und die optionale Verknüpfung mit einem Punktekonto laufen über denselben Hub.",
+        },
+      ],
+    },
+    loyalty: {
+      eyebrow: "Produkt",
+      title: "Loyalty",
+      lead: "Punkte, Status und Coupons für Marken, die Wiederkehr belohnen wollen, ohne ein eigenes System zu bauen.",
+      points: [
+        "Regeln für Umsatz, Frequenz oder einzelne Artikel",
+        "Segmente für Kampagnen und Prämien",
+        "Virtuelle Karte und optionale Wallet-Pässe",
+        "Umfragen, wenn ihr Präferenzen direkt fragen wollt",
+      ],
+      sections: [
+        {
+          title: "Regeln, die Fachteams pflegen",
+          text: "Punkte pro Euro, doppelte Punkte am Wochenende, ein Stempel je Besuch: die Logik sitzt in der Konfiguration, nicht in einem Sonderprojekt.",
+        },
+        {
+          title: "Coupons mit Absicht",
+          text: "Ein Slider aktiviert den Coupon erst, wenn die Person an der Kasse steht. Versehentliche Einlösungen auf dem Sofa werden seltener.",
+        },
+      ],
+    },
+    giftcards: {
+      eyebrow: "Produkt",
+      title: "Giftcards",
+      lead: "Gutscheinkarten mit Markenauftritt, Saldo und einer Einlösung, die Filiale und Shop verstehen.",
+      points: [
+        "Digitale Zustellung und physische Karten",
+        "Freie oder feste Nennwerte",
+        "Teilabbuchung und Restguthaben",
+        "Sammelbestellungen für Firmenkunden",
+      ],
+      sections: [
+        {
+          title: "Mehr als ein PDF",
+          text: "Die Karte trägt das Markendesign, zeigt den Saldo und lässt sich in Raten einlösen. Der Rest bleibt sichtbar, bis er aufgebraucht ist.",
+        },
+        {
+          title: "Der Bogen zur Loyalität",
+          text: "Wer eine Karte einlöst, kann dasselbe Konto für Punkte nutzen. Schenken wird so zum Einstieg, nicht zur Sackgasse.",
+        },
+      ],
+    },
+    app: {
+      eyebrow: "Produkt",
+      title: "Marken-App",
+      lead: "Eine App im Look der Marke: Karte, Coupons, Prämien und ein Scan für den Kassenbon.",
+      points: [
+        "Registrierung und Passwort-Zurücksetzen",
+        "Virtuelle Karte mit bewegtem Hintergrund",
+        "Coupon-Strecke und Prämienliste",
+        "Bon fotografieren, wenn die Kasse noch separat läuft",
+      ],
+      sections: [
+        {
+          title: "Euer Auftritt, unser Unterbau",
+          text: "Farben, Name und Angebote kommen aus der Marke. Konto, Regeln und Auswertung bleiben im Hub, damit die App kein zweites Loyalty-System wird.",
+        },
+        {
+          title: "Start ohne Kassenprojekt",
+          text: "Solange die Kasse nicht angebunden ist, reicht ein Foto des Bons. Die Buchung landet auf demselben Konto, das später die Kasse direkt füllt.",
+        },
+      ],
+    },
+  },
+  solutions: {
+    einzelhandel: {
+      eyebrow: "Lösung",
+      title: "Kundenbindung im Einzelhandel",
+      lead: "Spontane Einkäufe werden zu einem Konto, das in der Filiale und im Shop gilt.",
+      steps: [
+        {
+          title: "Registrieren",
+          text: "Per App, QR-Code an der Kasse oder Konto im Shop. Eine Identität, kein zweiter Plastikausweis.",
+        },
+        {
+          title: "Sammeln",
+          text: "Punkte für Umsatz, Besuch oder ausgewählte Artikel. Der Bon-Scan überbrückt Filialen ohne direkte Kassenanbindung.",
+        },
+        {
+          title: "Einlösen und nachfassen",
+          text: "Vorteile in der App, per Mail oder an der Kasse. Das Team sieht, welche Kampagne Frequenz bringt.",
+        },
+      ],
+    },
+    b2b: {
+      eyebrow: "Lösung",
+      title: "Kundenbindung im B2B",
+      lead: "Hersteller belohnen die Betriebe und Personen, die bestellen, schulen und weiterempfehlen.",
+      steps: [
+        {
+          title: "Nachweisen",
+          text: "Rechnungen oder Lieferscheine werden in der App hochgeladen. Der Umsatz muss nicht aus einer einzelnen Kasse kommen.",
+        },
+        {
+          title: "Mehrfach belohnen",
+          text: "Punkte für Einkauf, für eine Produktschulung oder für Feedback. Nicht jeder Anreiz ist ein Rabatt auf die nächste Bestellung.",
+        },
+        {
+          title: "Prämienshop",
+          text: "Sachprämien, Erlebnisse oder Giftcards. Das Team steuert den Katalog im Hub und sieht, was eingelöst wird.",
+        },
+      ],
+    },
+  },
+  articles: [
+    {
+      slug: "punkte-und-beziehung",
+      title: "Punkte reichen nicht, wenn niemand den nächsten Schritt kennt",
+      excerpt:
+        "Ein Saldo ohne Anlass wird zur Zahl in einer App. Programme wirken, wenn die nächste Prämie sichtbar und erreichbar ist.",
+      date: "12. März 2026",
+      paragraphs: [
+        "Viele Programme starten mit einem Umrechnungssatz: ein Punkt pro Euro. Das ist leicht zu erklären und schwer zu lieben. Die Person sieht eine Zahl und keinen Grund, vor dem nächsten Einkauf die App zu öffnen.",
+        "Wirksamer ist ein kurzer Weg zur nächsten Belohnung. Ein Schwellenwert, der in zwei Besuchen erreichbar ist, schlägt ein Prämienregal, das erst nach einem Jahr realistisch wird. Dazu gehört eine Regel, die das Team ohne Entwickler ändern kann, wenn die Schwelle zu hoch oder zu billig war.",
+        "kafteji trennt deshalb Konto, Kampagne und Prämie. Der Saldo bleibt stabil, die Aktion darf saisonal sein. So bleibt das Programm erkennbar, ohne jedes Quartal neu erfunden zu werden.",
+      ],
+    },
+    {
+      slug: "gutschein-als-einstieg",
+      title: "Ein Gutschein ist oft der erste Kontakt, nicht der letzte",
+      excerpt:
+        "Geschenkkarten enden häufig als Restguthaben. Verbunden mit einem Konto werden sie zum Start eines Programms.",
+      date: "2. Februar 2026",
+      paragraphs: [
+        "Gutscheinkarten werden gekauft, um jemand anderem eine Freude zu machen. Für die Marke ist das ein Kontakt mit zwei Personen: der schenkenden und der einlösenden. Die meisten Systeme merken sich nur den Saldo.",
+        "Sobald die einlösende Person ein Konto anlegt, wird aus dem Restguthaben eine Beziehung. Der nächste Einkauf kann Punkte sammeln, ohne dass der Gutschein seine Einfachheit verliert. Wer nicht mitmachen will, löst weiter nur den Betrag ein.",
+        "Darum liegen Giftcards und Loyalty bei kafteji im selben Workspace. Finance sieht den Kartenumsatz, Marketing sieht, wie viele Einlösungen zu einem Konto wurden.",
+      ],
+    },
+    {
+      slug: "bon-scan-im-handel",
+      title: "Der Bon-Scan ist eine Brücke, kein Dauerbehelf",
+      excerpt:
+        "Wer nicht auf ein Kassenprojekt warten will, kann mit einem Foto starten. Das Konto sollte dasselbe bleiben, wenn die Kasse später direkt bucht.",
+      date: "18. Januar 2026",
+      paragraphs: [
+        "Eine Kassenanbindung ist der saubere Weg. Sie ist selten der schnellste. Filialen mit unterschiedlichen Systemen, Franchisenehmer oder ein Pop-up brauchen einen Start, der nicht auf das nächste Integrationsfenster wartet.",
+        "Ein Foto des Bons überträgt Umsatz auf das Kundenkonto. Die Prüfung kann Regeln folgen: Datum, Filiale, Betrag. Das ersetzt keine signierte Transaktion aus der Kasse, reicht aber, um ein Programm zu eröffnen und zu lernen, welche Prämie gezogen wird.",
+        "Wichtig ist die Kontinuität. Punkte aus dem Scan und Punkte aus der späteren Kassenbuchung gehören auf dasselbe Konto. Sonst erklärt das Team zwei Programme, obwohl die Kundschaft nur eines erwartet.",
+      ],
+    },
+  ],
+  insightsPage: {
+    eyebrow: "Ressourcen",
+    title: "Insights",
+    text: "Drei kurze Texte dazu, wie Programme, Gutscheine und der Einstieg im Handel zusammenhängen.",
+  },
+  legal: {
+    imprintTitle: "Impressum",
+    privacyTitle: "Datenschutz",
+    sample: "Mustertext für diese Demo, keine Rechtsberatung.",
+    imprint: [
+      "kafteji ist eine fiktive Marke. Diese Website ist eine eigenständige Demonstration und steht in keiner Verbindung zur KNISTR GmbH.",
+      "Anbieter im Sinne eines echten Impressums wäre hier zu nennen. Platzhalter: kafteji Demo, Beispielweg 1, 20095 Hamburg.",
+      "Kontakt: hello@kafteji.example. Es werden über diese Seite keine E-Mails zugestellt.",
+    ],
+    privacy: [
+      "Diese Demo speichert die gewählte Sprache lokal im Browser. Formulare werden nicht an einen Server gesendet.",
+      "Es werden keine Analyse-Cookies gesetzt und keine Profile gebildet.",
+      "Für eine produktive Website bräuchte dieser Text Angaben zu Verantwortlichen, Hosting, Empfängern und Speicherdauer. Das ist hier bewusst nicht vorgetäuscht.",
+    ],
+  },
+  notFound: {
+    title: "Diese Seite gibt es nicht",
+    text: "Der Link führt ins Leere. Zurück zur Startseite findet ihr den Hub, die Produkte und den Kontakt.",
+    cta: "Zur Startseite",
+  },
+  account: {
+    localNote: "Unternehmenskonten bleiben in diesem Browser.",
+    nav: {
+      signIn: "Anmelden",
+      signUp: "Unternehmen anlegen",
+      signOut: "Abmelden",
+      workspace: "Workspace",
+    },
+    home: {
+      eyebrow: "Für Unternehmen",
+      title: "Legt ein Konto an und startet euer Loyalty-Programm.",
+      text: "Ein Workspace für eure Marke: Firmenkonto, Programmname und die Punkteregel, mit der das Team später arbeitet. In dieser Demo verlässt nichts den Browser.",
+      primary: "Unternehmenskonto erstellen",
+      secondary: "Anmelden",
+      signedIn: "Angemeldet als {company}.",
+      openWorkspace: "Workspace öffnen",
+      stepsTitle: "So kommt das Konto ins Programm",
+      steps: [
+        {
+          title: "Unternehmen",
+          text: "Firmenname, Branche und die Person, die das Konto verwaltet.",
+        },
+        {
+          title: "Programm",
+          text: "Wie das Programm heißt und wie viele Punkte ein Euro bringt.",
+        },
+        {
+          title: "Workspace",
+          text: "Danach liegt das Konto bereit. Dieselbe E-Mail öffnet es wieder.",
+        },
+      ],
+    },
+    register: {
+      eyebrow: "Neues Konto",
+      title: "Unternehmen registrieren",
+      text: "Damit legt ihr das Konto an, mit dem euer Team das Loyalty-Programm nutzt.",
+      company: "Unternehmen",
+      companyName: "Firmenname",
+      industry: "Branche",
+      industries: { retail: "Einzelhandel", b2b: "B2B" },
+      city: "Stadt",
+      optional: "optional",
+      website: "Website",
+      program: "Programm",
+      programName: "Programmname",
+      pointsName: "Name der Punkte",
+      pointsPerEuro: "Punkte pro Euro",
+      admin: "Administrator",
+      adminName: "Name",
+      email: "Geschäftliche E-Mail",
+      password: "Passwort",
+      confirm: "Passwort wiederholen",
+      passwordHint: "Mindestens 8 Zeichen.",
+      consent:
+        "Ich verstehe, dass dieses Konto nur in diesem Browser gespeichert wird und nicht an einen Server geht.",
+      submit: "Konto erstellen",
+      submitting: "Konto wird angelegt…",
+      hasAccount: "Schon ein Konto?",
+      signIn: "Anmelden",
+      errorSummary: "Bitte die markierten Felder prüfen.",
+      errors: {
+        companyName: "Bitte den Firmennamen eintragen.",
+        adminName: "Bitte einen Namen eintragen.",
+        email: "Bitte eine gültige E-Mail-Adresse eintragen.",
+        emailTaken: "Für diese E-Mail gibt es schon ein Unternehmenskonto.",
+        password: "Das Passwort braucht mindestens 8 Zeichen.",
+        confirm: "Die Passwörter stimmen nicht überein.",
+        points: "Bitte eine Zahl größer als 0 eintragen.",
+        programName: "Bitte einen Programmnamen eintragen.",
+        pointsName: "Bitte einen Namen für die Punkte eintragen.",
+        consent: "Bitte den Hinweis bestätigen.",
+        website: "Bitte eine gültige Website eintragen oder das Feld leer lassen.",
+      },
+    },
+    login: {
+      eyebrow: "Willkommen zurück",
+      title: "Am Unternehmenskonto anmelden",
+      text: "Mit der E-Mail, die das Konto angelegt hat.",
+      email: "E-Mail",
+      password: "Passwort",
+      submit: "Anmelden",
+      submitting: "Prüfen…",
+      noAccount: "Noch kein Konto?",
+      signUp: "Unternehmen anlegen",
+      error: "E-Mail oder Passwort ist nicht bekannt.",
+    },
+    workspace: {
+      eyebrow: "Workspace",
+      ready: "Das Unternehmenskonto ist aktiv.",
+      members: "Mitglieder",
+      campaigns: "Kampagnen",
+      rule: "Punkteregel",
+      ruleValue: "{points} {name} pro Euro",
+      company: "Unternehmen",
+      industry: "Branche",
+      admin: "Administrator",
+      created: "Angelegt am",
+      city: "Stadt",
+      website: "Website",
+      empty:
+        "Noch keine Mitglieder. Das Konto ist bereit für Kasse, Shop oder App, sobald sie an dieses Programm angebunden werden.",
+      editTitle: "Regel anpassen",
+      editText: "Programmname und Punkteregel könnt ihr hier ändern. Das Konto bleibt dasselbe.",
+      save: "Änderungen speichern",
+      saved: "Gespeichert.",
+      programName: "Programmname",
+      pointsName: "Name der Punkte",
+      pointsPerEuro: "Punkte pro Euro",
+    },
+    program: {
+      membersTitle: "Mitglieder",
+      membersText: "Kunden, die in diesem Programm Punkte sammeln.",
+      memberName: "Name",
+      memberEmail: "E-Mail",
+      addMember: "Mitglied anlegen",
+      memberAdded: "Mitglied angelegt.",
+      noMembers: "Noch keine Mitglieder.",
+      balance: "Stand",
+      earnTitle: "Einkauf buchen",
+      earnText: "Der Betrag wird mit der Punkteregel in Punkte umgerechnet.",
+      member: "Mitglied",
+      chooseMember: "Mitglied wählen",
+      euros: "Betrag in Euro",
+      preview: "{euros} Euro ergeben {points} {name}.",
+      book: "Punkte buchen",
+      booked: "Gebucht.",
+      rewardsTitle: "Prämien",
+      rewardsText: "Legt eine Prämie an und löst sie gegen Punkte ein.",
+      rewardName: "Prämienname",
+      rewardCost: "Punktepreis",
+      addReward: "Prämie anlegen",
+      rewardAdded: "Prämie angelegt.",
+      noRewards: "Noch keine Prämien.",
+      reward: "Prämie",
+      chooseReward: "Prämie wählen",
+      redeem: "Einlösen",
+      redeemed: "Eingelöst.",
+      history: "Letzte Buchungen",
+      earnLine: "{name} erhält {points} {unit} für {euros} Euro.",
+      redeemLine: "{name} löst {reward} für {points} {unit} ein.",
+      errors: {
+        name: "Bitte einen Namen eintragen.",
+        email: "Bitte eine gültige E-Mail-Adresse eintragen.",
+        taken: "Diese E-Mail ist in diesem Programm schon vergeben.",
+        amount: "Bitte einen Betrag größer als 0 eintragen.",
+        noPoints: "Dieser Betrag ergibt keine Punkte.",
+        member: "Bitte ein Mitglied wählen.",
+        cost: "Bitte einen Punktepreis größer als 0 eintragen.",
+        reward: "Bitte eine Prämie wählen.",
+        tooFew: "Dafür reichen die Punkte nicht.",
+      },
+    },
+  },
+  lang: { de: "DE", en: "EN" },
+};
+
+export type Copy = typeof de;
+
+const en: Copy = {
+  meta: {
+    title: "kafteji — Loyalty and gift card technology",
+    description:
+      "kafteji runs points, coupons, and gift cards in one workspace for brands that want to own the customer relationship.",
+  },
+  brand: "kafteji",
+  hosted: "Made & hosted in Germany",
+  nav: {
+    products: "Products",
+    solutions: "Solutions",
+    resources: "Resources",
+    about: "About",
+    demo: "Book a demo",
+    talk: "Book a call",
+    search: "Search",
+    searchPlaceholder: "Search pages or articles",
+    noResults: "Nothing matches that.",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+  menu: {
+    products: [
+      {
+        to: "/produkte/hub",
+        title: "kafteji Hub",
+        text: "Loyalty and gift cards in one workspace.",
+      },
+      {
+        to: "/produkte/loyalty",
+        title: "Loyalty",
+        text: "Points, status, coupons, and campaigns.",
+      },
+      {
+        to: "/produkte/giftcards",
+        title: "Gift cards",
+        text: "Digital and physical branded cards.",
+      },
+      {
+        to: "/produkte/app",
+        title: "Branded app",
+        text: "Card, coupons, and receipt scan in your look.",
+      },
+    ],
+    solutions: [
+      {
+        to: "/loesungen/einzelhandel",
+        title: "Retail",
+        text: "Store and webshop on one account.",
+      },
+      {
+        to: "/loesungen/b2b",
+        title: "B2B",
+        text: "Rewards for trade, crews, and partners.",
+      },
+    ],
+    resources: [
+      {
+        to: "/insights",
+        title: "Insights",
+        text: "Short notes on programs, cards, and retail.",
+      },
+      {
+        to: "/kontakt",
+        title: "Conversation",
+        text: "Request a demo or an intro call.",
+      },
+    ],
+    about: [
+      {
+        to: "/ueber-uns",
+        title: "The company",
+        text: "How kafteji sets up and runs a program.",
+      },
+      {
+        to: "/impressum",
+        title: "Legal notice",
+        text: "Who this demo belongs to.",
+      },
+    ],
+  },
+  hero: {
+    title: "Loyalty and gift cards, from one workspace.",
+    text: "kafteji helps brands run points, coupons, and gift cards together. Modules connect to the till and the shop, data stays in Germany, and the program can grow with the business.",
+  },
+  pillars: {
+    title: "How the work is split",
+    items: [
+      {
+        title: "Program strategy",
+        text: "Goals, rules, and a business case before the first campaign goes live. Which action earns points, which reward is worth it, which channel carries the card.",
+      },
+      {
+        title: "Technology",
+        text: "Modules that business teams can maintain, plus an API for till, shop, and app. One account, several touchpoints, no second card in a drawer.",
+      },
+      {
+        title: "Operations",
+        text: "Metrics, campaigns, and a named contact while the program runs. Not only at launch, but when rules, range, or stores change.",
+      },
+    ],
+  },
+  hub: {
+    badge: "New",
+    title: "The hub keeps loyalty and gift cards together.",
+    text: "Point balances, coupons, card stock, and reports live in one workspace. Marketing sets campaigns, the store sees the balance, finance sees gift card sales.",
+    cta: "View the hub",
+    kpis: [
+      { label: "Members", value: "128.4k" },
+      { label: "Redemption", value: "37%" },
+      { label: "Gift card sales", value: "€1.9m" },
+      { label: "Live campaigns", value: "14" },
+    ],
+  },
+  split: {
+    loyalty: {
+      eyebrow: "Loyalty",
+      title: "Programs that show up in everyday shopping",
+      text: "A virtual card, coupons that activate on purpose, points for spend or frequency, and campaigns aimed at a segment.",
+      cta: "View loyalty",
+      points: [
+        "A virtual card instead of plastic",
+        "Coupons that activate at the till",
+        "Receipt scan while the till is still separate",
+        "Status, stamps, and rewards on one account",
+      ],
+    },
+    gift: {
+      eyebrow: "Gift cards",
+      title: "Cards that keep working after the purchase",
+      text: "Digital and physical cards with your brand, a balance, and redemption. As a gift, a corporate benefit, or the start of a loyalty account.",
+      cta: "View gift cards",
+      points: [
+        "Artwork, value, and validity per campaign",
+        "Partial spend and remaining balance",
+        "Sold online, in store, or as a bulk order",
+        "Optionally tied to the points account",
+      ],
+    },
+  },
+  industries: {
+    title: "Two typical starting points",
+    items: [
+      {
+        to: "/loesungen/einzelhandel",
+        eyebrow: "Retail",
+        title: "Store and shop on one account",
+        text: "People join by app or QR code, earn on the receipt, and redeem wherever they buy.",
+      },
+      {
+        to: "/loesungen/b2b",
+        eyebrow: "B2B",
+        title: "Rewards for the people who order and recommend",
+        text: "Trade partners upload invoices, earn for purchases and training, and redeem goods or gift cards.",
+      },
+    ],
+  },
+  connections: {
+    title: "Typical connections",
+    note: "Fictional names for this demo, not real partnerships.",
+    items: ["KassaNord", "Ladenwerk", "Briefpost", "Payfeld", "Marktlinie", "Regalio"],
+  },
+  security: {
+    title: "Hosting in Germany",
+    text: "Personal data on this platform is meant to stay on infrastructure in Germany. Consent, access, and deletion belong in the program, not in a later ticket. This demo issues no certificates and stores no forms.",
+  },
+  insights: {
+    eyebrow: "Insights",
+    title: "What teams settle before kickoff",
+    all: "All articles",
+    read: "Read on",
+  },
+  newsletter: {
+    title: "Stay loosely in touch",
+    text: "On a live platform this would be a newsletter. Here the address stays in the browser and is not sent.",
+    placeholder: "Email address",
+    button: "Subscribe",
+    success: "Saved. In this demo the address never leaves the browser.",
+    invalid: "Enter a valid email address.",
+  },
+  closing: {
+    kicker: "Build the program together",
+    title: "We sketch the starting point that fits your business.",
+    text: "A store program, B2B rewards, or gift cards for the season: the first call settles the goal, the channel, and the first result you can measure.",
+  },
+  footer: {
+    blurb: "A workspace for loyalty programs and gift cards.",
+    product: "Products",
+    company: "Company",
+    legal: "Legal",
+    privacy: "Privacy",
+    imprint: "Legal notice",
+    contact: "Contact",
+    disclaimer:
+      "An independent demo. Not affiliated with KNISTR GmbH or its products.",
+    address: "Beispielweg 1 · 20095 Hamburg · hello@kafteji.example",
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Demo or intro call",
+    text: "Say briefly what you want to reward or give. This demo keeps the request in the browser.",
+    name: "Name",
+    company: "Company",
+    email: "Email",
+    phone: "Phone",
+    phoneHint: "optional",
+    interest: "What is it about?",
+    interests: ["Loyalty", "Gift cards", "Both", "Not sure yet"],
+    message: "Message",
+    consent: "I understand this is a demo and that nothing is sent.",
+    submit: "Keep this request",
+    successTitle: "Request kept locally",
+    successText:
+      "Nothing was sent to a server. A connected version would deliver this note to the kafteji team.",
+    again: "Another request",
+    errors: {
+      name: "Enter a name.",
+      company: "Enter the company.",
+      email: "Enter a valid email address.",
+      message: "Say briefly what this is about.",
+      consent: "Confirm the note above.",
+    },
+  },
+  about: {
+    eyebrow: "About kafteji",
+    title: "One platform, three kinds of support",
+    text: "kafteji is a fictional brand for this website. It shows how a loyalty and gift card company can present itself: strategy, software, and operations from one place.",
+    blocks: [
+      {
+        title: "Before launch",
+        text: "We settle who the program is for, which action gets rewarded, and which channel carries the card. That becomes a rule set people can explain.",
+      },
+      {
+        title: "During setup",
+        text: "Shop, till, or app talk to the same account. Where a connection is still missing, receipt scan covers the start.",
+      },
+      {
+        title: "Day to day",
+        text: "Campaigns, redemption, and membership stay visible. Rules can change without rewriting the program.",
+      },
+    ],
+  },
+  products: {
+    hub: {
+      eyebrow: "Product",
+      title: "kafteji Hub",
+      lead: "The workspace where loyalty rules and gift cards share one customer base.",
+      points: [
+        "Accounts, balances, and campaigns in one place",
+        "Reports on members, redemption, and card sales",
+        "Roles for marketing, stores, and finance",
+        "Rule changes without a release window",
+      ],
+      sections: [
+        {
+          title: "One view of the program",
+          text: "Membership, live campaigns, and redeemed benefits sit side by side. A team can see whether a coupon worked or was only handed out.",
+        },
+        {
+          title: "Gift cards in the same stock",
+          text: "Cards do not need a second system. Sales, remaining balance, and an optional link to points run through the same hub.",
+        },
+      ],
+    },
+    loyalty: {
+      eyebrow: "Product",
+      title: "Loyalty",
+      lead: "Points, status, and coupons for brands that want repeat purchases without building a system of their own.",
+      points: [
+        "Rules for spend, frequency, or selected items",
+        "Segments for campaigns and rewards",
+        "A virtual card and optional wallet passes",
+        "Surveys when you want preferences first-hand",
+      ],
+      sections: [
+        {
+          title: "Rules business teams can edit",
+          text: "Points per euro, double points on weekends, a stamp per visit: the logic lives in configuration, not in a special project.",
+        },
+        {
+          title: "Coupons used on purpose",
+          text: "A slider activates the coupon when the person is at the till. Accidental redemptions from the sofa get rarer.",
+        },
+      ],
+    },
+    giftcards: {
+      eyebrow: "Product",
+      title: "Gift cards",
+      lead: "Gift cards with your brand, a balance, and redemption that store and shop both understand.",
+      points: [
+        "Digital delivery and physical cards",
+        "Open or fixed amounts",
+        "Partial redemption and remaining balance",
+        "Bulk orders for corporate buyers",
+      ],
+      sections: [
+        {
+          title: "More than a PDF",
+          text: "The card carries the brand, shows the balance, and can be spent in parts. What remains stays visible until it is used.",
+        },
+        {
+          title: "The bridge into loyalty",
+          text: "Someone redeeming a card can use the same account for points. Giving becomes an introduction, not a dead end.",
+        },
+      ],
+    },
+    app: {
+      eyebrow: "Product",
+      title: "Branded app",
+      lead: "An app in the brand’s look: card, coupons, rewards, and a scan for the receipt.",
+      points: [
+        "Sign-up and password reset",
+        "Virtual card with a moving background",
+        "Coupon rail and reward list",
+        "Photograph a receipt while the till is still separate",
+      ],
+      sections: [
+        {
+          title: "Your face, our base",
+          text: "Colors, name, and offers come from the brand. Account, rules, and reporting stay in the hub, so the app does not become a second loyalty system.",
+        },
+        {
+          title: "Start without a till project",
+          text: "Until the till is connected, a photo of the receipt is enough. The booking lands on the same account the till will fill later.",
+        },
+      ],
+    },
+  },
+  solutions: {
+    einzelhandel: {
+      eyebrow: "Solution",
+      title: "Retail loyalty",
+      lead: "A spontaneous purchase becomes an account that works in the store and the shop.",
+      steps: [
+        {
+          title: "Join",
+          text: "By app, a QR code at the till, or an account in the shop. One identity, no second plastic card.",
+        },
+        {
+          title: "Earn",
+          text: "Points for spend, visits, or selected items. Receipt scan covers stores that are not on a direct till connection yet.",
+        },
+        {
+          title: "Redeem and follow up",
+          text: "Benefits in the app, by email, or at the till. The team sees which campaign actually brings people back.",
+        },
+      ],
+    },
+    b2b: {
+      eyebrow: "Solution",
+      title: "B2B loyalty",
+      lead: "Manufacturers reward the businesses and people who order, train, and recommend.",
+      steps: [
+        {
+          title: "Prove the purchase",
+          text: "Invoices or delivery notes are uploaded in the app. Revenue does not have to come from a single till.",
+        },
+        {
+          title: "Reward more than one action",
+          text: "Points for a purchase, a product training, or feedback. Not every incentive is a discount on the next order.",
+        },
+        {
+          title: "Reward shop",
+          text: "Goods, experiences, or gift cards. The team runs the catalogue in the hub and sees what gets redeemed.",
+        },
+      ],
+    },
+  },
+  articles: [
+    {
+      slug: "punkte-und-beziehung",
+      title: "Points fall flat when nobody can see the next step",
+      excerpt:
+        "A balance with no occasion is just a number in an app. Programs work when the next reward is visible and reachable.",
+      date: "12 March 2026",
+      paragraphs: [
+        "Many programs start with a conversion rate: one point per euro. That is easy to explain and hard to love. The person sees a number and no reason to open the app before the next shop.",
+        "A short path to the next reward works better. A threshold reachable in two visits beats a catalogue that only becomes realistic after a year. The team also needs to change that rule without a developer when the threshold was too high or too cheap.",
+        "kafteji keeps the account, the campaign, and the reward apart. The balance stays stable. The offer can be seasonal. The program stays recognizable without being reinvented every quarter.",
+      ],
+    },
+    {
+      slug: "gutschein-als-einstieg",
+      title: "A gift card is often the first contact, not the last",
+      excerpt:
+        "Gift cards often end as leftover balance. Tied to an account, they become the start of a program.",
+      date: "2 February 2026",
+      paragraphs: [
+        "Gift cards are bought to please someone else. For the brand that is contact with two people: the giver and the person who redeems. Most systems remember only the balance.",
+        "Once the person redeeming opens an account, leftover value becomes a relationship. The next purchase can earn points without making the gift card complicated. Anyone who opts out still just spends the amount.",
+        "That is why gift cards and loyalty sit in the same kafteji workspace. Finance sees card sales. Marketing sees how many redemptions became an account.",
+      ],
+    },
+    {
+      slug: "bon-scan-im-handel",
+      title: "Receipt scan is a bridge, not a permanent workaround",
+      excerpt:
+        "Teams that cannot wait for a till project can start with a photo. The account should stay the same when the till posts directly later.",
+      date: "18 January 2026",
+      paragraphs: [
+        "A till connection is the clean path. It is rarely the fastest. Stores on different systems, franchisees, or a pop-up need a start that does not wait for the next integration window.",
+        "A photo of the receipt posts spend to the customer account. Checks can follow rules: date, store, amount. It does not replace a signed transaction from the till, but it is enough to open a program and learn which reward people actually take.",
+        "Continuity matters. Points from the scan and points from the later till posting belong on the same account. Otherwise the team explains two programs while customers expected one.",
+      ],
+    },
+  ],
+  insightsPage: {
+    eyebrow: "Resources",
+    title: "Insights",
+    text: "Three short notes on how programs, gift cards, and a retail start fit together.",
+  },
+  legal: {
+    imprintTitle: "Legal notice",
+    privacyTitle: "Privacy",
+    sample: "Sample text for this demo, not legal advice.",
+    imprint: [
+      "kafteji is a fictional brand. This website is an independent demonstration and is not connected to KNISTR GmbH.",
+      "A real legal notice would name the provider here. Placeholder: kafteji Demo, Beispielweg 1, 20095 Hamburg.",
+      "Contact: hello@kafteji.example. This site does not deliver email.",
+    ],
+    privacy: [
+      "This demo stores the chosen language locally in the browser. Forms are not sent to a server.",
+      "No analytics cookies are set and no profiles are built.",
+      "A production site would need the controller, hosting, recipients, and retention here. Those details are intentionally not invented.",
+    ],
+  },
+  notFound: {
+    title: "This page does not exist",
+    text: "That link goes nowhere. The home page has the hub, the products, and contact.",
+    cta: "Back home",
+  },
+  account: {
+    localNote: "Company accounts stay in this browser.",
+    nav: {
+      signIn: "Sign in",
+      signUp: "Create a company",
+      signOut: "Sign out",
+      workspace: "Workspace",
+    },
+    home: {
+      eyebrow: "For companies",
+      title: "Create an account and start your loyalty program.",
+      text: "A workspace for your brand: the company account, the program name, and the points rule your team will run. In this demo, nothing leaves the browser.",
+      primary: "Create a company account",
+      secondary: "Sign in",
+      signedIn: "Signed in as {company}.",
+      openWorkspace: "Open workspace",
+      stepsTitle: "How the account joins the program",
+      steps: [
+        {
+          title: "Company",
+          text: "Company name, industry, and the person who administers the account.",
+        },
+        {
+          title: "Program",
+          text: "What the program is called, and how many points one euro earns.",
+        },
+        {
+          title: "Workspace",
+          text: "The account is ready after that. The same email opens it again.",
+        },
+      ],
+    },
+    register: {
+      eyebrow: "New account",
+      title: "Register your company",
+      text: "This creates the account your team uses to run the loyalty program.",
+      company: "Company",
+      companyName: "Company name",
+      industry: "Industry",
+      industries: { retail: "Retail", b2b: "B2B" },
+      city: "City",
+      optional: "optional",
+      website: "Website",
+      program: "Program",
+      programName: "Program name",
+      pointsName: "Points name",
+      pointsPerEuro: "Points per euro",
+      admin: "Administrator",
+      adminName: "Name",
+      email: "Work email",
+      password: "Password",
+      confirm: "Repeat password",
+      passwordHint: "At least 8 characters.",
+      consent:
+        "I understand this account is stored only in this browser and is not sent to a server.",
+      submit: "Create account",
+      submitting: "Creating account…",
+      hasAccount: "Already have an account?",
+      signIn: "Sign in",
+      errorSummary: "Please check the marked fields.",
+      errors: {
+        companyName: "Enter the company name.",
+        adminName: "Enter a name.",
+        email: "Enter a valid email address.",
+        emailTaken: "A company account already uses this email.",
+        password: "Use at least 8 characters.",
+        confirm: "The passwords do not match.",
+        points: "Enter a number greater than 0.",
+        programName: "Enter a program name.",
+        pointsName: "Enter a name for the points.",
+        consent: "Please confirm the note.",
+        website: "Enter a valid website, or leave the field empty.",
+      },
+    },
+    login: {
+      eyebrow: "Welcome back",
+      title: "Sign in to the company account",
+      text: "Use the email that created the account.",
+      email: "Email",
+      password: "Password",
+      submit: "Sign in",
+      submitting: "Checking…",
+      noAccount: "No account yet?",
+      signUp: "Create a company",
+      error: "That email or password is not known.",
+    },
+    workspace: {
+      eyebrow: "Workspace",
+      ready: "The company account is active.",
+      members: "Members",
+      campaigns: "Campaigns",
+      rule: "Points rule",
+      ruleValue: "{points} {name} per euro",
+      company: "Company",
+      industry: "Industry",
+      admin: "Administrator",
+      created: "Created",
+      city: "City",
+      website: "Website",
+      empty:
+        "No members yet. The account is ready for a till, shop, or app once they connect to this program.",
+      editTitle: "Adjust the rule",
+      editText: "You can change the program name and points rule here. The account stays the same.",
+      save: "Save changes",
+      saved: "Saved.",
+      programName: "Program name",
+      pointsName: "Points name",
+      pointsPerEuro: "Points per euro",
+    },
+    program: {
+      membersTitle: "Members",
+      membersText: "Customers who earn points in this program.",
+      memberName: "Name",
+      memberEmail: "Email",
+      addMember: "Add member",
+      memberAdded: "Member added.",
+      noMembers: "No members yet.",
+      balance: "Balance",
+      earnTitle: "Record a purchase",
+      earnText: "The amount is converted with the points rule.",
+      member: "Member",
+      chooseMember: "Choose a member",
+      euros: "Amount in euros",
+      preview: "{euros} euros earn {points} {name}.",
+      book: "Add points",
+      booked: "Recorded.",
+      rewardsTitle: "Rewards",
+      rewardsText: "Add a reward, then redeem it for points.",
+      rewardName: "Reward name",
+      rewardCost: "Points price",
+      addReward: "Add reward",
+      rewardAdded: "Reward added.",
+      noRewards: "No rewards yet.",
+      reward: "Reward",
+      chooseReward: "Choose a reward",
+      redeem: "Redeem",
+      redeemed: "Redeemed.",
+      history: "Recent activity",
+      earnLine: "{name} receives {points} {unit} for {euros} euros.",
+      redeemLine: "{name} redeems {reward} for {points} {unit}.",
+      errors: {
+        name: "Enter a name.",
+        email: "Enter a valid email address.",
+        taken: "This email is already used in this program.",
+        amount: "Enter an amount greater than 0.",
+        noPoints: "This amount earns no points.",
+        member: "Choose a member.",
+        cost: "Enter a points price greater than 0.",
+        reward: "Choose a reward.",
+        tooFew: "There are not enough points for that.",
+      },
+    },
+  },
+  lang: { de: "DE", en: "EN" },
+};
+
+export const dictionary = { de, en };
+export type Locale = keyof typeof dictionary;
