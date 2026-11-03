@@ -1,9 +1,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { Field } from "../components/Field.tsx";
+import { Link } from "react-router-dom";
+import { ActivityHistory } from "../components/ActivityHistory.tsx";
+import { GrowthPanel } from "../components/GrowthPanel.tsx";
+import { HubExtras } from "../components/HubExtras.tsx";
 import { ProgramPanel } from "../components/ProgramPanel.tsx";
 import { useLocale } from "../useLocale.ts";
 import { useSession } from "../useSession.ts";
+import { openGiftBalance } from "../program.ts";
 import { parsePoints } from "../storage.ts";
 
 export function WorkspacePage() {
@@ -74,16 +79,28 @@ export function WorkspacePage() {
         <p className="eyebrow">{text.eyebrow}</p>
         <h1>{account.programName}</h1>
         <p className="lead">{text.ready}</p>
+        <Link className="btn" to="/app-vorschau">
+          {text.openApp}
+        </Link>
       </header>
 
-      <section className="stats" aria-label={text.eyebrow}>
+      <section className="stats stats-four" aria-label={text.eyebrow}>
         <article>
           <p>{text.members}</p>
           <strong>{program.members.length}</strong>
         </article>
         <article>
           <p>{text.campaigns}</p>
-          <strong>0</strong>
+          <strong>{program.campaigns.length}</strong>
+        </article>
+        <article>
+          <p>{text.giftcards}</p>
+          <strong>
+            {openGiftBalance(program).toLocaleString(numberLocale, {
+              style: "currency",
+              currency: "EUR",
+            })}
+          </strong>
         </article>
         <article>
           <p>{text.rule}</p>
@@ -94,6 +111,9 @@ export function WorkspacePage() {
       {program.members.length === 0 ? <p className="empty">{text.empty}</p> : null}
 
       <ProgramPanel />
+      <GrowthPanel />
+      <HubExtras />
+      <ActivityHistory />
 
       <section className="card facts-card">
         <h2>{text.company}</h2>

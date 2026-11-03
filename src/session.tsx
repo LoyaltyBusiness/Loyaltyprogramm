@@ -1,11 +1,19 @@
 import { useMemo, useRef, useState, type ReactNode } from "react";
 import {
+  claimCampaign as postCampaignClaim,
+  createCampaign,
+  createCoupon,
   createMember,
   createReward,
   emptyProgram,
+  issueGiftCard,
+  linkGiftCard,
   postEarn,
   postRedeem,
   readProgram,
+  redeemCoupon,
+  spendGiftCard,
+  type CampaignSegment,
 } from "./program.ts";
 import {
   accountById,
@@ -75,9 +83,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         const next = updateProgram(account.id, patch);
         if (next) setAccount(next);
       },
-      addMember(name: string, email: string) {
+      addMember(name: string, email: string, referralFrom = "") {
         if (!account) return { ok: false as const, reason: "name" as const };
-        const result = createMember(account.id, name, email);
+        const result = createMember(account.id, name, email, referralFrom);
         if (result.ok) setProgram(result.program);
         return result;
       },
@@ -93,9 +101,75 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         if (result.ok) setProgram(result.program);
         return result;
       },
+      scanReceipt(memberId: string, euros: number) {
+        if (!account) return { ok: false as const, reason: "member" as const };
+        const result = postEarn(
+          account.id,
+          memberId,
+          euros,
+          account.pointsPerEuro,
+          "receipt",
+        );
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      postInvoice(memberId: string, euros: number) {
+        if (!account) return { ok: false as const, reason: "member" as const };
+        const result = postEarn(
+          account.id,
+          memberId,
+          euros,
+          account.pointsPerEuro,
+          "invoice",
+        );
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
       redeemReward(memberId: string, rewardId: string) {
         if (!account) return { ok: false as const, reason: "member" as const };
         const result = postRedeem(account.id, memberId, rewardId);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      issueGift(amount: number, memberId: string | null) {
+        if (!account) return { ok: false as const, reason: "amount" as const };
+        const result = issueGiftCard(account.id, amount, memberId);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      spendGift(cardId: string, amount: number) {
+        if (!account) return { ok: false as const, reason: "card" as const };
+        const result = spendGiftCard(account.id, cardId, amount);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      linkGift(cardId: string, memberId: string) {
+        if (!account) return { ok: false as const, reason: "card" as const };
+        const result = linkGiftCard(account.id, cardId, memberId);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      addCoupon(name: string, valueEuros: number) {
+        if (!account) return { ok: false as const, reason: "name" as const };
+        const result = createCoupon(account.id, name, valueEuros);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      applyCoupon(couponId: string, memberId: string | null, activated: boolean) {
+        if (!account) return { ok: false as const, reason: "coupon" as const };
+        const result = redeemCoupon(account.id, couponId, memberId, activated);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      addCampaign(name: string, segment: CampaignSegment, bonusPoints: number) {
+        if (!account) return { ok: false as const, reason: "name" as const };
+        const result = createCampaign(account.id, name, segment, bonusPoints);
+        if (result.ok) setProgram(result.program);
+        return result;
+      },
+      claimCampaign(campaignId: string, memberId: string) {
+        if (!account) return { ok: false as const, reason: "campaign" as const };
+        const result = postCampaignClaim(account.id, campaignId, memberId);
         if (result.ok) setProgram(result.program);
         return result;
       },

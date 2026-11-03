@@ -431,6 +431,151 @@ select[aria-invalid="true"] {
   margin-top: 28px;
 }
 
+.stats.stats-four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.activate {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(27, 92, 69, 0.06);
+  cursor: pointer;
+}
+
+.activate input {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--pine);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--pine-deep);
+  border: 1px solid var(--pine);
+}
+
+.status-pill {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
+.status-classic {
+  background: rgba(92, 103, 95, 0.14);
+  color: var(--muted);
+}
+
+.status-silver {
+  background: rgba(166, 132, 74, 0.18);
+  color: var(--gold);
+}
+
+.status-gold {
+  background: rgba(27, 92, 69, 0.16);
+  color: var(--pine-deep);
+}
+
+.app-preview .workspace-intro .btn {
+  margin-top: 12px;
+}
+
+.app-pick {
+  margin-top: 20px;
+  max-width: 320px;
+}
+
+.phone-frame {
+  margin: 24px auto 0;
+  max-width: 340px;
+  padding: 18px 16px 28px;
+  border-radius: 36px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(160deg, rgba(27, 92, 69, 0.18), transparent 45%),
+    var(--white);
+  box-shadow: 0 18px 40px rgba(20, 56, 44, 0.12);
+}
+
+.phone-notch {
+  width: 96px;
+  height: 10px;
+  margin: 0 auto 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  opacity: 0.18;
+}
+
+.phone-brand {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  margin: 0 0 14px;
+}
+
+.virtual-card {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.virtual-card h2 {
+  margin: 4px 0 8px;
+  font-size: 1.4rem;
+}
+
+.phone-stats {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.phone-stats dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.phone-stats dd {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.phone-offers {
+  margin-top: 18px;
+}
+
+.phone-offers h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.phone-offers ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.phone-offers li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
 .stats article {
   padding: 16px 18px;
 }
@@ -519,11 +664,18 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+@media (max-width: 960px) {
+  .stats.stats-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 840px) {
   .split,
   .split.narrow,
   .steps ol,
   .stats,
+  .stats.stats-four,
   .pair {
     grid-template-columns: 1fr;
   }

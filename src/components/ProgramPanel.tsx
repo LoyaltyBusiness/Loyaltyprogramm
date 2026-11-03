@@ -2,7 +2,14 @@ import { useState, type FormEvent } from "react";
 import { Field } from "./Field.tsx";
 import { useLocale } from "../useLocale.ts";
 import { useSession } from "../useSession.ts";
-import { parseAmount, parseCost, pointsForSpend } from "../program.ts";
+import {
+  memberStatus,
+  parseAmount,
+  parseCost,
+  pointsForSpend,
+  SILVER_AT,
+  GOLD_AT,
+} from "../program.ts";
 
 function fill(template: string, values: Record<string, string>) {
   return Object.entries(values).reduce(
@@ -19,6 +26,7 @@ export function ProgramPanel() {
 
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
+  const [referralFrom, setReferralFrom] = useState("");
   const [memberError, setMemberError] = useState("");
   const [memberSaved, setMemberSaved] = useState(false);
 
@@ -49,7 +57,7 @@ export function ProgramPanel() {
   function onAddMember(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMemberSaved(false);
-    const result = addMember(memberName, memberEmail);
+    const result = addMember(memberName, memberEmail, referralFrom);
     if (!result.ok) {
       setMemberError(text.errors[result.reason]);
       return;
@@ -57,7 +65,14 @@ export function ProgramPanel() {
     setMemberError("");
     setMemberName("");
     setMemberEmail("");
+    setReferralFrom("");
     setMemberSaved(true);
+  }
+
+  function statusLabel(status: ReturnType<typeof memberStatus>) {
+    if (status === "gold") return text.statusGold;
+    if (status === "silver") return text.statusSilver;
+    return text.statusClassic;
   }
 
   function onEarn(event: FormEvent<HTMLFormElement>) {
@@ -127,13 +142,17 @@ export function ProgramPanel() {
     setRedeemSaved(true);
   }
 
-  const history = [...program.entries].reverse().slice(0, 8);
-
   return (
     <>
       <section className="card stack-card">
         <h2>{text.membersTitle}</h2>
         <p className="lead">{text.membersText}</p>
+        <p className="hint">
+          {fill(copy.account.workspace.statusHint, {
+            silver: String(SILVER_AT),
+            gold: String(GOLD_AT),
+          })}
+        </p>
         <form onSubmit={onAddMember} noValidate>
           <div className="pair">
             <Field id="member-name" label={text.memberName} error={memberError === text.errors.name ? memberError : undefined}>
@@ -148,7 +167,15 @@ export function ProgramPanel() {
                 required
               />
             </Field>
-            <Field id="member-email" label={text.memberEmail} error={memberError && memberError !== text.errors.name ? memberError : undefined}>
+            <Field
+              id="member-email"
+              label={text.memberEmail}
+              error={
+                memberError === text.errors.email || memberError === text.errors.taken
+                  ? memberError
+                  : undefined
+              }
+            >
               <input
                 id="member-email"
                 type="email"
@@ -156,13 +183,31 @@ export function ProgramPanel() {
                 autoComplete="email"
                 spellCheck={false}
                 maxLength={120}
-                aria-invalid={memberError && memberError !== text.errors.name ? true : undefined}
-                aria-describedby={memberError && memberError !== text.errors.name ? "member-email-error" : undefined}
+                aria-invalid={
+                  memberError === text.errors.email || memberError === text.errors.taken
+                    ? true
+                    : undefined
+                }
                 onChange={(event) => setMemberEmail(event.target.value)}
                 required
               />
             </Field>
           </div>
+          <Field
+            id="member-referral"
+            label={text.referralCode}
+            hint={text.referralHint}
+            error={memberError === text.errors.referral ? memberError : undefined}
+          >
+            <input
+              id="member-referral"
+              value={referralFrom}
+              spellCheck={false}
+              maxLength={12}
+              aria-invalid={memberError === text.errors.referral ? true : undefined}
+              onChange={(event) => setReferralFrom(event.target.value)}
+            />
+          </Field>
           <div className="form-actions">
             <button className="btn" type="submit">
               {text.addMember}
@@ -178,17 +223,27 @@ export function ProgramPanel() {
           <p className="empty">{text.noMembers}</p>
         ) : (
           <ul className="roster">
-            {program.members.map((member) => (
-              <li key={member.id}>
-                <span>
-                  <strong>{member.name}</strong>
-                  <span className="muted"> · {member.email}</span>
-                </span>
-                <span className="balance">
-                  {pointsLabel(member.points)} {account.pointsName}
-                </span>
-              </li>
-            ))}
+            {program.members.map((member) => {
+              const status = memberStatus(member);
+              return (
+                <li key={member.id}>
+                  <span>
+                    <strong>{member.name}</strong>
+                    <span className="muted"> · {member.email}</span>
+                    <span className={`status-pill status-${status}`}>
+                      {statusLabel(status)}
+                    </span>
+                    <span className="muted">
+                      {" "}
+                      · {fill(text.yourCode, { code: member.referralCode })}
+                    </span>
+                  </span>
+                  <span className="balance">
+                    {pointsLabel(member.points)} {account.pointsName}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         )}
       </section>
@@ -370,32 +425,6 @@ export function ProgramPanel() {
             ) : null}
           </div>
         </form>
-        {history.length > 0 ? (
-          <div>
-            <h3>{text.history}</h3>
-            <ul className="roster">
-              {history.map((entry) => (
-                <li key={entry.id}>
-                  <span>
-                    {entry.kind === "earn"
-                      ? fill(text.earnLine, {
-                          name: entry.memberName,
-                          points: pointsLabel(entry.points),
-                          unit: account.pointsName,
-                          euros: money(entry.euros ?? 0),
-                        })
-                      : fill(text.redeemLine, {
-                          name: entry.memberName,
-                          reward: entry.rewardName ?? "",
-                          points: pointsLabel(entry.points),
-                          unit: account.pointsName,
-                        })}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
       </section>
     </>
   );

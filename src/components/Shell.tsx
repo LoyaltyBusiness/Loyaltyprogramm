@@ -46,6 +46,9 @@ export function Shell() {
               <Link className="chip" to="/workspace">
                 {account.companyName}
               </Link>
+              <Link className="btn btn-ghost" to="/app-vorschau">
+                {copy.account.nav.brandApp}
+              </Link>
               <button type="button" className="btn btn-ghost" onClick={onSignOut}>
                 {copy.account.nav.signOut}
               </button>
